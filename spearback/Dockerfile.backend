@@ -1,0 +1,21 @@
+# Use official Node.js image
+FROM node:18-alpine
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy all backend files
+COPY . .
+
+# Ensure index.js exists
+RUN ls -l /app
+
+# Expose the backend port (adjust if needed)
+EXPOSE 5000
+
+# Start the backend server with index.js
+CMD ["node", "index.js"]
