@@ -3,17 +3,15 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./spearback
+      context: ./Backend
       dockerfile: Dockerfile.backend
     ports:
-      - "5000:5000"
-    env_file:
-      - .env  
+      - "5000:5000"  
     restart: unless-stopped
 
   frontend:
     build:
-      context: ./spear6
+      context: ./Frontend
       dockerfile: Dockerfile.frontend
     ports:
       - "80:80"
