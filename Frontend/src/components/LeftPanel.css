@@ -1,0 +1,179 @@
+/* Wrapper for the left panel */
+.left-panel-wrapper {
+    width: 50%; /* Matches original panel size */
+    height: 100%; /* Ensures consistent height */
+    perspective: 1000px; /* Enables 3D perspective */
+    position: relative;
+}
+
+/* Container for flipping functionality */
+.left-panel-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease; /* Smooth flip animation */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Add flipping behavior */
+.left-panel-container.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Base styles for front and back faces */
+.panel-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Back face */
+.panel-face.back {
+    transform: rotateY(180deg);
+    /* No hardcoded background color, set dynamically via JS */
+}
+
+/* Header styling */
+.left-panel-header {
+    background-color: rgba(0, 0, 0, 0.1); /* Slightly darker for contrast */
+    padding: 10px;
+    margin-top: 10px; /* Add gap between header and top of the panel */
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: calc(100% - 20px); /* Adjust width to leave space on sides */
+    margin: 10px auto; /* Center the header horizontally and add top/bottom margin */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    height: 50px; /* Standard header height */
+    display: flex;
+    justify-content: space-between; /* Align flip icon to the right */
+    align-items: center;
+    font-weight: bold;
+}
+
+/* Flip icon styling */
+.flip-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #333; /* Default icon color */
+    transition: transform 0.3s ease, color 0.3s ease;
+    margin-right: 10px; /* Add some spacing from the edge */
+}
+
+.flip-icon:hover {
+    transform: rotate(90deg); /* Rotates on hover */
+    color: #1976d2; /* Change color on hover */
+}
+
+/* Preview iframe */
+.Preview {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    width: 97%;
+    border-radius: 2%;
+    margin: auto;
+    min-height: 50vh;
+    max-height: 85vh;
+    padding: 10px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    border: 1px solid #ccc; /* Light border for clarity */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Code editor container */
+.code-editor-container {
+    flex: 1;
+    width: 90%; /* Adjust the width to make it look like an island */
+    margin: 20px auto; /* Add top margin to leave space from header */
+    background-color: #2e3440; /* Dark background for the code editor */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for the island effect */
+    overflow-y: auto;
+    padding: 10px;
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Code editor text */
+.code-editor {
+    font-family: "Courier New", Courier, monospace; /* Monospaced font */
+    font-size: 14px;
+    line-height: 1.5;
+    color: #d8dee9; /* Light text color */
+    white-space: pre-wrap; /* Preserve formatting */
+    word-wrap: break-word; /* Ensure long lines wrap */
+}
+
+/* Textarea for live editing */
+.code-editor {
+    width: 100%;
+    height: 100px;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    background-color: #2e3440;
+    color: #d8dee9;
+    border: 1px solid #4c566a;
+    border-radius: 5px;
+    padding: 10px;
+    resize: vertical;
+    outline: none;
+    margin-top: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Textarea expands slightly when focused */
+.code-editor:focus {
+    height: 120px;
+    border-color: #81a1c1;
+}
+
+/* Fullscreen mode */
+.code-editor-container.expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #1e1e1e;
+    z-index: 9999;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for expanded labels */
+.code-editor-container.expanded h3 {
+    font-size: 24px;
+    cursor: pointer;
+    background: #333;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Improve styling for expandable labels */
+.code-editor-container h3 {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #444;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+}
+
+.code-editor-container h3:hover {
+    background-color: #666;
+}
